@@ -84,21 +84,28 @@ export default {
         password: ''
       }
     },
+    resetNewUser() {
+      this.new_user = {
+        name: '',
+        email: '',
+        password: ''
+      }
+    },
     deleteUser() {
       if (!this.user_id) {
         alert("유저 고유번호를 입력해야합니다")
-        return;
+        return
       }
       axios
       .delete('/api/user/'+this.user_id)
       .then((res) => {
-        console.log(res);
+        console.log(res)
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err)
       })
 
-      this.getUsers();
+      this.getUsers()
     },
     getUser() {
       if (!this.user_id) {
@@ -108,11 +115,11 @@ export default {
       axios
       .get('/api/user/'+this.user_id)
       .then((res) => {
-        console.log(res);
-        this.user = res.data;
+        console.log(res)
+        this.user = res.data
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err)
         this.resetUser()
       })
     },
@@ -120,11 +127,11 @@ export default {
       axios
       .get('/api/users')
       .then((res) => {
-        console.log(res);
-        this.users = res.data;
+        console.log(res)
+        this.users = res.data
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err)
       })
     },
     createUser() {
@@ -136,11 +143,12 @@ export default {
       .post('/api/users', this.new_user)
       .then((res) => {
         console.log(res);
+        this.resetNewUser()
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err)
       })
-      this.getUsers();
+      this.getUsers()
     }
   }
 
