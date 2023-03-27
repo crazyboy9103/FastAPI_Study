@@ -20,5 +20,16 @@ npm run build
 npm run lint
 ```
 
+## Project Mode
+### Development Mode
+```
+npm run dev
+```
+
+### Production Mode
+```
+npm run prod
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
