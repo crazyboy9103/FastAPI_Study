@@ -37,6 +37,12 @@
         </tr>
       </table>
     </div>
+
+    <div>
+      <input placeholder="이메일" v-model="login_form.email">
+      <input placeholder="비밀번호" v-model="login_form.password">
+      <button @click="loginTest()">로그인 테스트</button>
+    </div>
   </div>
 </template>
 
@@ -61,6 +67,10 @@ export default {
       new_user: {
         name: '',
         email: '',
+        password: ''
+      },
+      login_form: {
+        email: '', 
         password: ''
       },
       users: []
@@ -149,6 +159,21 @@ export default {
         console.log(err)
       })
       this.getUsers()
+    },
+
+    loginTest() {
+      if (!(this.login_form.email && this.login_form.password)) {
+        alert("모든 필드를 입력해야합니다")
+        return;
+      }
+      axios
+      .post('/api/check_user', this.login_form)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
   }
 
