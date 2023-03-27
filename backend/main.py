@@ -1,17 +1,14 @@
 from enum import Enum
-
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
-
 class ModelName(str, Enum):
     alexnet = "alexnet"
     resnet = "resnet"
     lenet = "lenet"
 
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
-app = FastAPI()
 
+app = FastAPI()
 try: 
     register_tortoise(
         app, 
@@ -21,6 +18,7 @@ try:
     )
 except Exception as e:
     print(e)
+
 
 app.add_middleware(
     CORSMiddleware,
