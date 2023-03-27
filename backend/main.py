@@ -22,8 +22,6 @@ try:
 except Exception as e:
     print(e)
 
-# from models.models import User_Pydantic, User
-# print(User_Pydantic.from_queryset(User.all()))
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

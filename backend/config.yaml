@@ -1,23 +1,18 @@
-# FastAPI 실행 
-
-## 
-* ```config.yaml``` 파일을 생성
-```
 {
     'connections': {
         # Dict format for connection
         'default': {
             'engine': 'tortoise.backends.asyncmy',
             'credentials': {
-                'host': '호스트 주소',
+                'host': '34.64.165.47',
                 'port': '3306',
-                'user': '호스트 계정',
-                'password': '비밀번호',
-                'database': 'DB명',
+                'user': 'root',
+                'password': 'qlrtm8146',
+                'database': 'fastapi',
             }
         },
         # Using a DB_URL string
-        'default': 'mysql://user:password@host:port/database' # credentials의 각 value와 동일하게 변경
+        'default': 'mysql://root:qlrtm8146@34.64.165.47:3306/fastapi'
     },
     'apps': {
         'models': {
@@ -27,4 +22,3 @@
         }
     }
 }
-```
