@@ -1,5 +1,6 @@
 <template>
   <nav>
+    <p>실행 모드: {{ APP_PHASE }}</p>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> | 
     <router-link to="/example">Example</router-link> |
@@ -30,3 +31,13 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
+<script>
+
+export default {
+  computed: {
+    APP_PHASE() {
+      return process.env.NODE_ENV;
+    }
+  },
+}
+</script>
