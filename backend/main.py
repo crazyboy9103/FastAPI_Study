@@ -9,9 +9,21 @@ class ModelName(str, Enum):
     resnet = "resnet"
     lenet = "lenet"
 
-
+from tortoise.contrib.fastapi import register_tortoise
 app = FastAPI()
 
+try: 
+    register_tortoise(
+        app, 
+        config_file = "config.yaml", 
+        generate_schemas=True, # generate schemas (IF NOT EXISTS)
+        add_exception_handlers=True,
+    )
+except Exception as e:
+    print(e)
+
+# from models.models import User_Pydantic, User
+# print(User_Pydantic.from_queryset(User.all()))
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -20,9 +32,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from routes import example, login
+from routes import example, login, user
 app.include_router(example.router)
 app.include_router(login.router)
+app.include_router(user.router)
+
 
 @app.get("/models/{model_name}")
 async def get_model(model_name: ModelName):
