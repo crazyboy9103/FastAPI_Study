@@ -3,7 +3,7 @@ node_modules
 /dist
 
 # local config files
-*.yaml
+config.yaml
 
 # local env files
 .env.local
