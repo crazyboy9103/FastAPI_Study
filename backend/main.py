@@ -7,6 +7,7 @@ class ModelName(str, Enum):
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
+from tortoise import Tortoise
 
 app = FastAPI()
 try: 
@@ -16,6 +17,15 @@ try:
         generate_schemas=True, # generate schemas (IF NOT EXISTS)
         add_exception_handlers=True,
     )
+    print(dir(app))
+    for model_name, model_class in Tortoise.apps.models.items():
+        file_name = f"{model_name.lower()}.py"
+        with open(file_name, "w") as f:
+            f.write(model_class.__module__ + "\n\n")
+            f.write(model_class.__qualname__ + " = ...\n")
+            f.write(model_class.__name__ + " = ...\n")
+            f.write(str(model_class).replace(model_class.__module__ + ".", ""))
+
 except Exception as e:
     print(e)
 
