@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <h1>This is an user page</h1>
+    <h1>This is an user page containing CRUD</h1>
     <div> 
       <div>
         <input placeholder="유저 고유번호" v-model="user_id">

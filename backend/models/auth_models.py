@@ -1,6 +1,7 @@
 from tortoise import fields
 from tortoise.models import Model
-class User(Model):
+
+class AuthUser(Model):
     user_id = fields.IntField(pk=True, generated=True, unique=True, index=True, description="유저 아이디")
     name = fields.CharField(max_length=255, null=True, description="이름")
     email = fields.CharField(max_length=255, null=True, description="이메일")
@@ -9,26 +10,13 @@ class User(Model):
         return self.name
     
     class Meta:
-        table = "users" # 테이블명
-        table_description = "유저 테이블" # 테이블 코멘트
-        # abstract = False # Abstract class 인경우
-        # schema = "" # 스키마 이름 설정
-        # unique_together=(("field_a", "field_b"), ("field_c", "field_d", "field_e")) # Compound unique indexes
-        # indexes=(("field_a", "field_b"), ("field_c", "field_d", "field_e")) # Compound non-unique indexes
-        # ordering = ["name", "-email"] # orderby name asc, email desc
-        # manager: tortoise.manager.Manager = CustomManager() 
+        table = "auth_users"
+        table_description = "인증유저 테이블" 
 
     class PydanticMeta:
-        # computed = ["name"] # Computed 필드 - 계산해놔서 사용할 수 있음 
-        # exclude = ["password"] # 필드 숨기기
         exclude_raw_fields : bool = False # _id 숨길지 여부
-        # allow_cycles : bool = False # Recursive table의 경우 Cycle 허용할지 (?)
-        # backward_relations : bool = True 
 
-
-    # PydanticMeta의 computed 필드는 함수로 정의해 놓으면 됨
-    # def name(self) -> str:
-    #     return self.name
+    
 
 # class tortoise.fields.base.Field(
 #   source_field=None, # DB상 필드와 Model상 필드가 다를 경우 DB상 field명
@@ -106,4 +94,4 @@ class User(Model):
 # )
 
 from tortoise.contrib.pydantic import pydantic_model_creator
-User_Pydantic = pydantic_model_creator(User, name="User", exclude_readonly=True)
+AuthUser_Pydantic = pydantic_model_creator(AuthUser, name="AuthUser", exclude_readonly=True)

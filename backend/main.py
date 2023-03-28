@@ -1,9 +1,3 @@
-from enum import Enum
-class ModelName(str, Enum):
-    alexnet = "alexnet"
-    resnet = "resnet"
-    lenet = "lenet"
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
@@ -29,22 +23,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from routes import example, login, user
+from routes import example, login, user, auth
 app.include_router(example.router)
 app.include_router(login.router)
 app.include_router(user.router)
-
-
-@app.get("/models/{model_name}")
-async def get_model(model_name: ModelName):
-    if model_name is ModelName.alexnet:
-        return {"model_name": model_name, "message": "Deep Learning FTW!"}
-
-    if model_name.value == "lenet":
-        return {"model_name": model_name, "message": "LeCNN all the images"}
-
-    return {"model_name": model_name, "message": "Have some residuals"}
-
-@app.get("/")
-async def test():
-    return {"message": "Good"}
+app.include_router(auth.router)
