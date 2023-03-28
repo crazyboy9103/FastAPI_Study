@@ -56,6 +56,7 @@ export default {
   components: {
     
   },
+
   data() {
     return {
       user_id: '',

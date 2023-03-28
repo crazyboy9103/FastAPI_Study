@@ -1,2 +1,7 @@
 {
+    "css.enabledLanguages": [
+        "html",
+        "typescript",
+        "javascript",
+    ],
 }
