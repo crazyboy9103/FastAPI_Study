@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-comp">
+  <div class="register-comp">
     <div>
       <input
         placeholder="이름"
