@@ -4,4 +4,32 @@
         "typescript",
         "javascript",
     ],
+    "terminal.integrated.profiles.osx": {
+    
+        "bash": {
+            "path": "bash",
+            "args": [
+
+            ],
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh",
+            "args": [
+            ]
+        },
+        "fish": {
+            "path": "fish",
+            "args": [
+            ]
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        }
+    },
 }
